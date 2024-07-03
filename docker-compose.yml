@@ -1,0 +1,11 @@
+services:
+  mysql:
+    container_name: 'agregador-de-investimentos'
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=desafio-db'
+      - 'MYSQL_PASSWORD=admin'
+      - 'MYSQL_ROOT_PASSWORD=admin'
+      - 'MYSQL_USER=admin'
+    ports:
+      - '3306:3306'
