@@ -1,12 +1,12 @@
 package tech.com.agregadordeinvestimentos.controller;
 
 import java.net.URI;
-
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import tech.com.agregadordeinvestimentos.entity.User;
 import tech.com.agregadordeinvestimentos.service.UserService;
 
 @RestController
@@ -25,9 +25,20 @@ public class UserController {
     return ResponseEntity.created(URI.create("/v1/users/" + userId.toString())).build();
   }
 
+  // http://localhost:8080/v1/users/{id}
   @GetMapping("/{userId}")
   public ResponseEntity<User> getUserById(@PathVariable("userId") String userId) {
-    //
-    return null;
+    var user = userService.getUserById(userId);
+    if (user.isPresent()) {
+      return ResponseEntity.ok(user.get());
+    } else {
+      return ResponseEntity.notFound().build();
+    }
+  }
+
+  // http://localhost:8080/v1/users/allUsers
+  @GetMapping("/allUsers")
+  public List<User> getAllUsers() {
+    return userService.getAllUsers();
   }
 }

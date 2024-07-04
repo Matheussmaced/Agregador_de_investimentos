@@ -1,6 +1,8 @@
 package tech.com.agregadordeinvestimentos.service;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class UserService {
     this.userRepository = userRepository;
   }
 
+  // Post
+
   public UUID createUser(CreateUserDto createUserDto) {
     // DTO -> ENTITY
     var entity = new User(
@@ -31,5 +35,15 @@ public class UserService {
     var userSaved = userRepository.save(entity);
 
     return userSaved.getUserId();
+  }
+
+  // Get
+
+  public Optional<User> getUserById(String userId) {
+    return userRepository.findById(UUID.fromString(userId));
+  }
+
+  public List<User> getAllUsers() {
+    return userRepository.findAll();
   }
 }
