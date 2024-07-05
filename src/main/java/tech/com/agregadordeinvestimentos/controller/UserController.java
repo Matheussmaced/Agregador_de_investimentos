@@ -38,7 +38,9 @@ public class UserController {
 
   // http://localhost:8080/v1/users/allUsers
   @GetMapping("/allUsers")
-  public List<User> getAllUsers() {
-    return userService.getAllUsers();
+  public ResponseEntity<List<User>> getAllUsers() {
+    var users = userService.getAllUsers();
+
+    return ResponseEntity.ok(users);
   }
 }
