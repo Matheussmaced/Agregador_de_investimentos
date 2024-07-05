@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import tech.com.agregadordeinvestimentos.DTO.CreateUserDto;
+import tech.com.agregadordeinvestimentos.DTO.UpdateUserDto;
 import tech.com.agregadordeinvestimentos.entity.User;
 import tech.com.agregadordeinvestimentos.service.UserService;
 

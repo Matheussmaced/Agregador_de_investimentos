@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import tech.com.agregadordeinvestimentos.controller.CreateUserDto;
-import tech.com.agregadordeinvestimentos.controller.UpdateUserDto;
+import tech.com.agregadordeinvestimentos.DTO.CreateUserDto;
+import tech.com.agregadordeinvestimentos.DTO.UpdateUserDto;
 import tech.com.agregadordeinvestimentos.entity.User;
 import tech.com.agregadordeinvestimentos.repository.UserRepository;
 
