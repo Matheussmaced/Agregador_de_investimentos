@@ -5,9 +5,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.catalina.connector.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import tech.com.agregadordeinvestimentos.controller.CreateUserDto;
+import tech.com.agregadordeinvestimentos.controller.UpdateUserDto;
 import tech.com.agregadordeinvestimentos.entity.User;
 import tech.com.agregadordeinvestimentos.repository.UserRepository;
 
@@ -45,6 +49,26 @@ public class UserService {
 
   public List<User> getAllUsers() {
     return userRepository.findAll();
+  }
+
+  // Update
+
+  public void updateUserById(String userId, UpdateUserDto updateUserDto) {
+    var id = UUID.fromString(userId);
+
+    var UserEntity = userRepository.findById(id);
+
+    if (UserEntity.isPresent()) {
+      var user = UserEntity.get();
+
+      if (updateUserDto.username() != null) {
+        user.setUsername(updateUserDto.username());
+      }
+      if (updateUserDto.password() != null) {
+        user.setPassword(updateUserDto.password());
+      }
+      userRepository.save(user);
+    }
   }
 
   // Delete
